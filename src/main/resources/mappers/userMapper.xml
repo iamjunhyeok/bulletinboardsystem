@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iamjunhyeok.bulletinboardsystem.mapper.UserMapper">
+    <insert id="join" parameterType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
+        INSERT INTO USER (
+            USER_ID
+            , PASSWORD
+        ) VALUES (
+            #{userId}
+            , #{password}
+        )
+    </insert>
+
+    <select id="findByUserId" resultType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
+        SELECT * FROM USER WHERE USER_ID = #{userId}
+    </select>
+</mapper>
