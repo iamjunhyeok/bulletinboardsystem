@@ -11,7 +11,7 @@ public class SHA256Util {
 
     private static final String ENCRYPTION_KEY = "SHA-256";
 
-    public static String encryptSHA256(String str) {
+    public static String encryptSHA256(String str, String salt) {
         String SHA = null;
         MessageDigest md;
         try {
@@ -19,7 +19,6 @@ public class SHA256Util {
             md = MessageDigest.getInstance(ENCRYPTION_KEY);
 
             // 2. 비밀번호와 salt 합친 문자열에 SHA-256 적용
-            String salt = getSalt();
             md.update((str + salt).getBytes());
             byte[] byteData = md.digest();
 
@@ -35,7 +34,7 @@ public class SHA256Util {
         return SHA;
     }
 
-    private static String getSalt() {
+    public static String getSalt() {
         // 1. Random, byte 객체 생성
         SecureRandom r = new SecureRandom();
         byte[] salt = new byte[20];
