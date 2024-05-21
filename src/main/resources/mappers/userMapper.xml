@@ -7,9 +7,11 @@
         INSERT INTO USER (
             USER_ID
             , PASSWORD
+            , SALT
         ) VALUES (
             #{userId}
             , #{password}
+            , #{salt}
         )
     </insert>
 
@@ -19,5 +21,9 @@
 
     <select id="findByUserIdAndPassword" resultType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
         SELECT * FROM USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}
+    </select>
+
+    <select id="getSaltByUserId" resultType="String">
+        SELECT SALT FROM USER WHERE USER_ID = #{userId}
     </select>
 </mapper>
