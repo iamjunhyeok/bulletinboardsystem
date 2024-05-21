@@ -2,6 +2,8 @@ package com.iamjunhyeok.bulletinboardsystem.service;
 
 import com.iamjunhyeok.bulletinboardsystem.dto.UserDto;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserJoinRequest;
+import com.iamjunhyeok.bulletinboardsystem.dto.request.UserLoginRequest;
+import com.iamjunhyeok.bulletinboardsystem.dto.response.UserLoginResponse;
 import com.iamjunhyeok.bulletinboardsystem.exception.DuplicateUserIdException;
 import com.iamjunhyeok.bulletinboardsystem.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,9 +29,16 @@ public class UserService {
         }
         request.setPassword(encryptSHA256(request.getPassword()));
         int insertCount = userMapper.join(request.getUserId(), request.getPassword());
-        if (insertCount == 1) {
+        if (insertCount != 1) {
             log.error("join ERROR : {}", request);
             throw new RuntimeException("회원가입에 실패했습니다.");
         }
+    }
+
+    @Transactional
+    public UserDto login(UserLoginRequest request) {
+        request.setPassword(encryptSHA256(request.getPassword()));
+        UserDto byUserIdAndPassword = userMapper.findByUserIdAndPassword(request.getUserId(), request.getPassword());
+        return byUserIdAndPassword;
     }
 }
