@@ -16,4 +16,8 @@
     <select id="findByUserId" resultType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
         SELECT * FROM USER WHERE USER_ID = #{userId}
     </select>
+
+    <select id="findByUserIdAndPassword" resultType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
+        SELECT * FROM USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}
+    </select>
 </mapper>
