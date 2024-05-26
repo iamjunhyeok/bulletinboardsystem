@@ -39,18 +39,19 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             UserLoginResponse userLoginResponse = new UserLoginResponse(login.getUserId());
-            session.setAttribute("login", userLoginResponse);
+            session.setAttribute("login", login.getId());
             return new ResponseEntity<>(userLoginResponse, HttpStatus.OK);
         }
     }
 
     @GetMapping("/my-info")
-    public ResponseEntity<UserLoginResponse> myInfo(HttpSession session) {
-        UserLoginResponse login = (UserLoginResponse) session.getAttribute("login");
-        if (login == null) {
+    public ResponseEntity<UserDto> myInfo(HttpSession session) {
+        Long id = (Long) session.getAttribute("login");
+        UserDto userInfo = userService.getUserInfo(id);
+        if (userInfo == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(login, HttpStatus.OK);
+            return new ResponseEntity<>(userInfo, HttpStatus.OK);
         }
     }
 

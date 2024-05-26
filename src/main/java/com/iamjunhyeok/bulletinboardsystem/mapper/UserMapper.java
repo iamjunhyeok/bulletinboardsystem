@@ -14,4 +14,6 @@ public interface UserMapper {
     UserDto findByUserIdAndPassword(@Param("userId") String userId, @Param("password") String password);
 
     String getSaltByUserId(@Param("userId") String userId);
+
+    UserDto findById(Long id);
 }

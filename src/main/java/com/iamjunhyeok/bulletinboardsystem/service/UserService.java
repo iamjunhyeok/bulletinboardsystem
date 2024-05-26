@@ -43,4 +43,9 @@ public class UserService {
         UserDto byUserIdAndPassword = userMapper.findByUserIdAndPassword(request.getUserId(), request.getPassword());
         return byUserIdAndPassword;
     }
+
+    public UserDto getUserInfo(Long id) {
+        UserDto userInfo = userMapper.findById(id);
+        return userInfo;
+    }
 }
