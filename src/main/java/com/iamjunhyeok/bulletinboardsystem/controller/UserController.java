@@ -1,6 +1,7 @@
 package com.iamjunhyeok.bulletinboardsystem.controller;
 
 import com.iamjunhyeok.bulletinboardsystem.dto.UserDto;
+import com.iamjunhyeok.bulletinboardsystem.dto.request.UserChangePasswordRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserJoinRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserLoginRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.response.UserLoginResponse;
@@ -58,5 +59,14 @@ public class UserController {
     @PutMapping("/logout")
     public void logout(HttpSession session) {
         session.invalidate();
+    }
+
+    @PutMapping("/change-password")
+    @ResponseStatus(HttpStatus.OK)
+    public void changePassword(@RequestBody UserChangePasswordRequest request, HttpSession session) {
+        Long id = (Long) session.getAttribute("login");
+        String oldPassword = request.getOldPassword();
+        String newPassword = request.getNewPassword();
+        userService.changePassword(id, oldPassword, newPassword);
     }
 }

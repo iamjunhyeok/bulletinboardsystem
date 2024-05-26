@@ -27,7 +27,21 @@
         SELECT * FROM USER WHERE USER_ID = #{userId} AND PASSWORD = #{password}
     </select>
 
+    <select id="findByIdAndPassword" resultType="com.iamjunhyeok.bulletinboardsystem.dto.UserDto">
+        SELECT * FROM USER WHERE ID = #{id} AND PASSWORD = #{password}
+    </select>
+
     <select id="getSaltByUserId" resultType="String">
         SELECT SALT FROM USER WHERE USER_ID = #{userId}
     </select>
+
+    <select id="getSaltById" resultType="String">
+        SELECT SALT FROM USER WHERE ID = #{id}
+    </select>
+
+    <update id="changePassword">
+        UPDATE USER
+        SET PASSWORD = #{password}, SALT = #{salt}
+        WHERE ID = #{id}
+    </update>
 </mapper>

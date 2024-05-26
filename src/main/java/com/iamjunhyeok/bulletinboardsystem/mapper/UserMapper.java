@@ -13,7 +13,13 @@ public interface UserMapper {
 
     UserDto findByUserIdAndPassword(@Param("userId") String userId, @Param("password") String password);
 
-    String getSaltByUserId(@Param("userId") String userId);
+    UserDto findByIdAndPassword(@Param("id") Long id, @Param("password") String password);
 
     UserDto findById(Long id);
+
+    String getSaltByUserId(@Param("userId") String userId);
+
+    String getSaltById(@Param("id") Long id);
+
+    int changePassword(Long id, String password, String salt);
 }
