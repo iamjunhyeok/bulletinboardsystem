@@ -43,4 +43,22 @@ public class UserService {
         UserDto byUserIdAndPassword = userMapper.findByUserIdAndPassword(request.getUserId(), request.getPassword());
         return byUserIdAndPassword;
     }
+
+    public UserDto getUserInfo(Long id) {
+        UserDto userInfo = userMapper.findById(id);
+        return userInfo;
+    }
+
+    @Transactional
+    public void changePassword(Long id, String oldPassword, String newPassword) {
+        String salt = userMapper.getSaltById(id);
+        UserDto userDto = userMapper.findByIdAndPassword(id, encryptSHA256(oldPassword, salt));
+        if (userDto != null) {
+            String newSalt = getSalt();
+            userMapper.changePassword(id, encryptSHA256(newPassword, newSalt), newSalt);
+         } else {
+            log.error("changePassword ERROR : {}", id);
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+        }
+    }
 }

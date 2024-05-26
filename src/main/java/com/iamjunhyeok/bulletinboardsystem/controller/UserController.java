@@ -1,6 +1,7 @@
 package com.iamjunhyeok.bulletinboardsystem.controller;
 
 import com.iamjunhyeok.bulletinboardsystem.dto.UserDto;
+import com.iamjunhyeok.bulletinboardsystem.dto.request.UserChangePasswordRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserJoinRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserLoginRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.response.UserLoginResponse;
@@ -39,23 +40,33 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             UserLoginResponse userLoginResponse = new UserLoginResponse(login.getUserId());
-            session.setAttribute("login", userLoginResponse);
+            session.setAttribute("login", login.getId());
             return new ResponseEntity<>(userLoginResponse, HttpStatus.OK);
         }
     }
 
     @GetMapping("/my-info")
-    public ResponseEntity<UserLoginResponse> myInfo(HttpSession session) {
-        UserLoginResponse login = (UserLoginResponse) session.getAttribute("login");
-        if (login == null) {
+    public ResponseEntity<UserDto> myInfo(HttpSession session) {
+        Long id = (Long) session.getAttribute("login");
+        UserDto userInfo = userService.getUserInfo(id);
+        if (userInfo == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(login, HttpStatus.OK);
+            return new ResponseEntity<>(userInfo, HttpStatus.OK);
         }
     }
 
     @PutMapping("/logout")
     public void logout(HttpSession session) {
         session.invalidate();
+    }
+
+    @PutMapping("/change-password")
+    @ResponseStatus(HttpStatus.OK)
+    public void changePassword(@RequestBody UserChangePasswordRequest request, HttpSession session) {
+        Long id = (Long) session.getAttribute("login");
+        String oldPassword = request.getOldPassword();
+        String newPassword = request.getNewPassword();
+        userService.changePassword(id, oldPassword, newPassword);
     }
 }
