@@ -44,4 +44,10 @@
         SET PASSWORD = #{password}, SALT = #{salt}
         WHERE ID = #{id}
     </update>
+
+    <update id="updateDeleteFlag">
+        UPDATE USER
+        SET DELETE_FLAG = #{deleteFlag}
+        WHERE ID = #{id}
+    </update>
 </mapper>

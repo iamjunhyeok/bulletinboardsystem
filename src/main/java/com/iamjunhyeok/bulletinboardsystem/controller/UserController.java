@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -68,5 +69,12 @@ public class UserController {
         String oldPassword = request.getOldPassword();
         String newPassword = request.getNewPassword();
         userService.changePassword(id, oldPassword, newPassword);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(HttpSession session) {
+        Long id = (Long) session.getAttribute("login");
+        userService.deleteUser(id);
     }
 }

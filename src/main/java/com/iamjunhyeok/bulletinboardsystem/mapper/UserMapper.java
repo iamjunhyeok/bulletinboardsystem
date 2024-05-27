@@ -22,4 +22,6 @@ public interface UserMapper {
     String getSaltById(@Param("id") Long id);
 
     int changePassword(Long id, String password, String salt);
+
+    int updateDeleteFlag(Long id, int deleteFlag);
 }
