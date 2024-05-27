@@ -1,5 +1,6 @@
 package com.iamjunhyeok.bulletinboardsystem.controller;
 
+import com.iamjunhyeok.bulletinboardsystem.aop.LoginCheck;
 import com.iamjunhyeok.bulletinboardsystem.dto.UserDto;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserChangePasswordRequest;
 import com.iamjunhyeok.bulletinboardsystem.dto.request.UserJoinRequest;
@@ -47,6 +48,7 @@ public class UserController {
     }
 
     @GetMapping("/my-info")
+    @LoginCheck
     public ResponseEntity<UserDto> myInfo(HttpSession session) {
         Long id = (Long) session.getAttribute("login");
         UserDto userInfo = userService.getUserInfo(id);
@@ -58,12 +60,14 @@ public class UserController {
     }
 
     @PutMapping("/logout")
+    @LoginCheck
     public void logout(HttpSession session) {
         session.invalidate();
     }
 
     @PutMapping("/change-password")
     @ResponseStatus(HttpStatus.OK)
+    @LoginCheck
     public void changePassword(@RequestBody UserChangePasswordRequest request, HttpSession session) {
         Long id = (Long) session.getAttribute("login");
         String oldPassword = request.getOldPassword();
@@ -73,6 +77,7 @@ public class UserController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @LoginCheck
     public void deleteUser(HttpSession session) {
         Long id = (Long) session.getAttribute("login");
         userService.deleteUser(id);
