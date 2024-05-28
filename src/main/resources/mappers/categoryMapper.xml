@@ -10,4 +10,10 @@
             #{name}
         )
     </insert>
+
+    <update id="deleteCategory">
+        UPDATE CATEGORY
+        SET DELETE_FLAG = 1
+        WHERE ID = #{id}
+    </update>
 </mapper>

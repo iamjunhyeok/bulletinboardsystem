@@ -19,4 +19,9 @@ public class CategoryService {
     public void addCategory(CategoryAddRequest request) {
         categoryMapper.addCategory(request);
     }
+
+    @Transactional
+    public void deleteCategory(Long id) {
+        categoryMapper.deleteCategory(id);
+    }
 }

@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CategoryMapper {
 
     int addCategory(CategoryAddRequest request);
+
+    int deleteCategory(Long id);
 }
