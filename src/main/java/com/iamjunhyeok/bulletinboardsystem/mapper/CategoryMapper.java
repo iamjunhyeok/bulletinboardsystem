@@ -8,5 +8,7 @@ public interface CategoryMapper {
 
     int addCategory(CategoryAddRequest request);
 
+    int updateCategory(Long id, String name);
+
     int deleteCategory(Long id);
 }

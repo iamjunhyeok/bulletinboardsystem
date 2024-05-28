@@ -11,6 +11,12 @@
         )
     </insert>
 
+    <update id="updateCategory">
+        UPDATE CATEGORY
+        SET NAME = #{name}
+        WHERE ID = #{id}
+    </update>
+
     <update id="deleteCategory">
         UPDATE CATEGORY
         SET DELETE_FLAG = 1
