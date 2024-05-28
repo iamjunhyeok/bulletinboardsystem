@@ -10,4 +10,10 @@
             #{name}
         )
     </insert>
+
+    <update id="updateCategory">
+        UPDATE CATEGORY
+        SET NAME = #{name}
+        WHERE ID = #{id}
+    </update>
 </mapper>
