@@ -1,6 +1,7 @@
 package com.iamjunhyeok.bulletinboardsystem.dto;
 
 import com.iamjunhyeok.bulletinboardsystem.dto.request.PostAddRequest;
+import com.iamjunhyeok.bulletinboardsystem.dto.request.PostUpdateRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,15 @@ public class PostDto {
         postDto.setTitle(request.getTitle());
         postDto.setContent(request.getContent());
         postDto.setCategoryId(request.getCategoryId());
+        return postDto;
+    }
+
+    public static PostDto of(Long id, Long userId, PostUpdateRequest request) {
+        PostDto postDto = new PostDto();
+        postDto.setId(id);
+        postDto.setUserId(userId);
+        postDto.setTitle(request.getTitle());
+        postDto.setContent(request.getContent());
         return postDto;
     }
 }

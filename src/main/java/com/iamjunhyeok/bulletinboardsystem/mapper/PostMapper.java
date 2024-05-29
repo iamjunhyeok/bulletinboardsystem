@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PostMapper {
 
     int createPost(PostDto postDto);
+
+    int updatePost(PostDto postDto);
 }

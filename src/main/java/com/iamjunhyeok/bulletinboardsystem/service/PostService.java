@@ -17,4 +17,9 @@ public class PostService {
     public void createPost(PostDto postDto) {
         postMapper.createPost(postDto);
     }
+
+    @Transactional
+    public void updatePost(PostDto postDto) {
+        postMapper.updatePost(postDto);
+    }
 }

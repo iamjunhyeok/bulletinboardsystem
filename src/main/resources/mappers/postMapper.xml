@@ -16,4 +16,10 @@
             , #{categoryId}
         )
     </insert>
+
+    <update id="updatePost">
+        UPDATE POST
+        SET TITLE = #{title}, CONTENT = #{content}
+        WHERE ID = #{id}
+    </update>
 </mapper>
