@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iamjunhyeok.bulletinboardsystem.mapper.CategoryMapper">
+    <insert id="addCategory">
+        INSERT INTO CATEGORY (
+            NAME
+        ) VALUES (
+            #{name}
+        )
+    </insert>
+
+    <update id="updateCategory">
+        UPDATE CATEGORY
+        SET NAME = #{name}
+        WHERE ID = #{id}
+    </update>
+
+    <update id="deleteCategory">
+        UPDATE CATEGORY
+        SET DELETE_FLAG = 1
+        WHERE ID = #{id}
+    </update>
+</mapper>
