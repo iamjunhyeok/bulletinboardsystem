@@ -36,4 +36,11 @@ public class PostDto {
         postDto.setContent(request.getContent());
         return postDto;
     }
+
+    public static PostDto of(Long id, Long userId) {
+        PostDto postDto = new PostDto();
+        postDto.setId(id);
+        postDto.setUserId(userId);
+        return postDto;
+    }
 }

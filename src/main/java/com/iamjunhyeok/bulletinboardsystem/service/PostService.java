@@ -22,4 +22,9 @@ public class PostService {
     public void updatePost(PostDto postDto) {
         postMapper.updatePost(postDto);
     }
+
+    @Transactional
+    public void deletePost(PostDto postDto) {
+        postMapper.deletePost(postDto);
+    }
 }

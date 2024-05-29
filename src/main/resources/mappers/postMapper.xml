@@ -22,4 +22,10 @@
         SET TITLE = #{title}, CONTENT = #{content}
         WHERE ID = #{id}
     </update>
+
+    <update id="deletePost">
+        UPDATE POST
+        SET DELETE_FLAG = 1
+        WHERE ID = #{id}
+    </update>
 </mapper>
