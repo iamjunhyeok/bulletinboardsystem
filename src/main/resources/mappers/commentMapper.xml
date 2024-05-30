@@ -20,4 +20,10 @@
             </if>
         )
     </insert>
+
+    <update id="updateComment">
+        UPDATE COMMENT
+        SET CONTENT = #{content}
+        WHERE ID = #{id}
+    </update>
 </mapper>

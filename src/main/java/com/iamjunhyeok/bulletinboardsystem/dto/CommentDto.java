@@ -1,6 +1,7 @@
 package com.iamjunhyeok.bulletinboardsystem.dto;
 
 import com.iamjunhyeok.bulletinboardsystem.dto.request.CommentAddRequest;
+import com.iamjunhyeok.bulletinboardsystem.dto.request.CommentUpdateRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,14 @@ public class CommentDto {
         CommentDto commentDto = new CommentDto();
         commentDto.setPostId(postId);
         commentDto.setParentId(parentId);
+        commentDto.setUserId(userId);
+        commentDto.setContent(request.getContent());
+        return commentDto;
+    }
+
+    public static CommentDto of(Long id, Long userId, CommentUpdateRequest request) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(id);
         commentDto.setUserId(userId);
         commentDto.setContent(request.getContent());
         return commentDto;

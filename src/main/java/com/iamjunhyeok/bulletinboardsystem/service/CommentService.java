@@ -19,4 +19,9 @@ public class CommentService {
     public void createComment(CommentDto commentDto) {
         commentMapper.createComment(commentDto);
     }
+
+    @Transactional
+    public void updateComment(CommentDto commentDto) {
+        commentMapper.updateComment(commentDto);
+    }
 }
