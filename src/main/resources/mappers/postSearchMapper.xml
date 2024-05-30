@@ -6,8 +6,8 @@
     <select id="getPosts">
         SELECT * FROM POST
         WHERE 1 = 1
-        <if test="name != null and name != ''">
-            AND NAME LIKE CONCAT(#{name}, '%')
+        <if test="title != null and title != ''">
+            AND NAME LIKE CONCAT(#{title}, '%')
         </if>
         <if test="content != null and content != ''">
             AND CONTENT LIKE CONCAT(#{content}, '%')
