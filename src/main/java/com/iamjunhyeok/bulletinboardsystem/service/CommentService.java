@@ -24,4 +24,9 @@ public class CommentService {
     public void updateComment(CommentDto commentDto) {
         commentMapper.updateComment(commentDto);
     }
+
+    @Transactional
+    public void deleteComment(CommentDto commentDto) {
+        commentMapper.deleteComment(commentDto);
+    }
 }

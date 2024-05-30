@@ -26,4 +26,10 @@
         SET CONTENT = #{content}
         WHERE ID = #{id}
     </update>
+
+    <update id="deleteComment">
+        UPDATE COMMENT
+        SET DELETE_FLAG = 1
+        WHERE ID = #{id}
+    </update>
 </mapper>

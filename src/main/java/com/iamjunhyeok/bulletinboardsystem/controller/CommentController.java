@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,5 +51,14 @@ public class CommentController {
         Long userId = (Long) session.getAttribute("login");
         CommentDto commentDto = CommentDto.of(id, userId, request);
         commentService.updateComment(commentDto);
+    }
+
+    @DeleteMapping("/{postId}/comments/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @LoginCheck
+    public void deleteComment(@PathVariable Long id, HttpSession session) {
+        Long userId = (Long) session.getAttribute("login");
+        CommentDto commentDto = CommentDto.of(id, userId);
+        commentService.deleteComment(commentDto);
     }
 }

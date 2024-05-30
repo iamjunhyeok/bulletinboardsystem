@@ -38,4 +38,11 @@ public class CommentDto {
         commentDto.setContent(request.getContent());
         return commentDto;
     }
+
+    public static CommentDto of(Long id, Long userId) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(id);
+        commentDto.setUserId(userId);
+        return commentDto;
+    }
 }

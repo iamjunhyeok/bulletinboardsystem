@@ -10,5 +10,5 @@ public interface CommentMapper {
 
     int updateComment(CommentDto commentDto);
 
-
+    int deleteComment(CommentDto commentDto);
 }
